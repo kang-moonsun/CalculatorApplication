@@ -1,0 +1,52 @@
+1번째 토이프로젝트
+계산기
+
+기능
+- 00, 0~9
+- 정수, 소수(.)에 대하여 사칙연산(+, -, *, /, =)
+- 삭제(del), 전체 지우기(c)
+- 00 편의 기능
+- 결과값에 연속적으로 계산이 가능.
+- 다항식 연산이 가능한 계산기
+- 정수, 소수
+
+설계
+- xml 1개 필요
+    숫자버튼 0~9, 00, . (12개)
+    연산버튼 +, -, *, /, c, =, del (7개)
+    입력 및 출력뷰 TextView(1개)
+- 변수
+    결과값
+- 메소드
+    사칙연산 + - * /
+
+# 프로젝트를 진행하며 알게 된 부분 정리
+- Constraintlayout에서 원하는 뷰에 weight를 설정할때 입력한 가중치에 맞게 width가 나눠지지 않았다.
+    하지만 단순한 Framework의 문제였던것 같다. 해당 뷰를 다시 지우고 작성해보니 원하는대로 동작하였다.
+
+    Constraintlayout의 weight 속성이 적용되는 부분을 다시 한번 학습해보자.
+    - 뷰 간의 Chain 관계를 확인한다.
+        weight를 주고 싶은 방향으로 뷰 간의 관계가 정의되어 있는지 확인한다.
+        (Horizontal의 경우 start와 end 속성을, Verical의 경우 Top과 Bottom 속성을 정의한다.)
+    - 가중치를 설정하고 싶은 수직, 수평 방향에 따라 width와 height를 0dp로 설정한다.
+    - constraintHorizontal 이나 Vertical_weight 속성으로
+        가중치 값을 부여한다.
+
+- ConstraintLayout에서 뷰들의 관계를 정의할때,
+    관계를 적용시키는 부분에서 id의 입력 형식이 올바르지 않아 발생하는 오류가 있었다.
+
+    app:layout_constraintBottom_toTopOf="point"
+
+    위와 같이 단순히 point라는 id만 입력하게 되면
+    Android resource를 연결하는 부분이 실패한다고 나오며 AAPT와 관련하여 Error가 발생한다.
+    하지만 @+id/와 같이 id 형식을 올바르게 입력함으로써 Error를 해결할 수 있었다.
+
+    공식문서에서는 일반적으로 ID 값을 사용할때, "@+id/name" 문법 형식을 사용한다고 한다.
+    이미 ID resource를 정의한 경우에는 View에 적용할때 +기호를 제외하고 사용할 수 있다.
+
+    추가로, AAPT(Android Asset Packaging Tool)는 Android Studio가 앱의 리소스를 컴파일하고 패키징하는데
+    사용하는 빌드 도구라고 한다.
+
+- String.dropLast()
+
+
